@@ -8,7 +8,7 @@ To build the RPM, you'll first need to set up your build environment. Typically,
 	mkdir ~/rpmbuild/{SOURCES,SPECS}
 	sudo yum install make openssl-devel pcre-devel readline-devel gcc-c++
 
-Then get the relevant files into your tree:
+Then get the relevant files into your tree (replacing `version` with the appropriate version string):
 
 	cd ~/rpmbuild/SOURCES
 	wget http://openresty.org/download/ngx_openresty-{version}.tar.gz
