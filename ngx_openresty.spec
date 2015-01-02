@@ -1,5 +1,5 @@
 Name:		ngx_openresty
-Version:	1.7.2.1
+Version:	1.7.4.1
 Release:	1%{?dist}
 Summary:	a fast web app server by extending nginx
 
@@ -14,8 +14,9 @@ BuildRequires:	sed openssl-devel pcre-devel readline-devel
 Requires:	openssl pcre readline
 Requires(pre):	shadow-utils
 
+%define _unpackaged_files_terminate_build 0
 %define user nginx
-%define homedir %{_usr}/local/openresty
+%define homedir /opt/openresty
 
 %description
 OpenResty (aka. ngx_openresty) is a full-fledged web application server by bundling the standard Nginx core, lots of 3rd-party Nginx modules, as well as most of their external dependencies.
@@ -26,7 +27,7 @@ OpenResty (aka. ngx_openresty) is a full-fledged web application server by bundl
 
 
 %build
-./configure --with-ipv6 --with-pcre-jit --with-luajit
+./configure --prefix=/opt/openresty --with-ipv6 --with-pcre-jit --with-luajit
 make %{?_smp_mflags}
 
 
