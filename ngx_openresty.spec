@@ -60,6 +60,7 @@ rm -rf %{buildroot}
 %{homedir}/nginx/logs
 %{homedir}/nginx/sbin
 %{homedir}/nginx/sbin/nginx
+%{homedir}/bin/resty
 
 %{homedir}/nginx/conf
 %{homedir}/nginx/conf/fastcgi.conf.default
