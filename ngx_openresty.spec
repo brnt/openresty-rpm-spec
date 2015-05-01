@@ -1,5 +1,5 @@
 Name:		ngx_openresty
-Version:	1.7.2.1
+Version:	1.7.7.1
 Release:	1%{?dist}
 Summary:	a fast web app server by extending nginx
 
@@ -60,6 +60,7 @@ rm -rf %{buildroot}
 %{homedir}/nginx/logs
 %{homedir}/nginx/sbin
 %{homedir}/nginx/sbin/nginx
+%{homedir}/bin/resty
 
 %{homedir}/nginx/conf
 %{homedir}/nginx/conf/fastcgi.conf.default
