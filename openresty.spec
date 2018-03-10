@@ -7,7 +7,7 @@ Group:		Productivity/Networking/Web/Servers
 License:	BSD
 URL:		openresty.org
 Source0:	http://openresty.org/download/%{name}-%{version}.tar.gz
-Source1:	https://github.com/ehsan310/openresty-rpm-spec/raw/master/nginx.init
+Source1:	https://github.com/ehsan310/openresty-rpm-spec/raw/master/openresty.init
 BuildRoot:	%(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 
 BuildRequires:	sed openssl-devel pcre-devel readline-devel
@@ -41,7 +41,7 @@ make install DESTDIR=%{buildroot}
 mkdir -p %{buildroot}/etc/init.d
 sed -e 's/%NGINX_CONF_DIR%/%{lua: esc,qty=string.gsub(rpm.expand("%{homedir}"), "/", "\\/"); print(esc)}\/nginx\/conf/g' \
 	-e 's/%NGINX_BIN_DIR%/%{lua: esc,qty=string.gsub(rpm.expand("%{homedir}"), "/", "\\/"); print(esc)}\/nginx\/sbin/g' \
-	%{SOURCE1} > %{buildroot}/etc/init.d/nginx
+	%{SOURCE1} > %{buildroot}/etc/init.d/openresty
 
 
 %clean
@@ -52,7 +52,7 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 #%{homedir}/*
 
-%attr(755,root,root) /etc/init.d/nginx
+%attr(755,root,root) /etc/init.d/openresty
 %{homedir}/luajit/*
 %{homedir}/lualib/*
 %{homedir}/nginx
