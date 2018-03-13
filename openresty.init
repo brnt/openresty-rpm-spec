@@ -1,33 +1,34 @@
 #!/bin/sh
 #
-# openresty - this script starts and stops the nginx daemon
+# openresty - this script starts and stops the nginx daemon of OpenResty
 #
-# chkconfig:   - 85 15 
-# description:  Nginx is an HTTP(S) server, HTTP(S) reverse \
-#               proxy and IMAP/POP3 proxy server
-# processname: nginx
-# config:      %NGINX_CONF_DIR%/nginx.conf
-# config:      /etc/sysconfig/nginx
-# pidfile:     /var/run/nginx.pid
- 
+# chkconfig:   345 85 15
+# description: OpenResty is a scalable web platform by extending
+#              NGINX with Lua
+# processname: openresty
+# config:      /usr/local/openresty/nginx/conf/nginx.conf
+# config:      /etc/sysconfig/openresty
+# pidfile:     /usr/local/openresty/nginx/logs/nginx.pid
+
 # Source function library.
 . /etc/rc.d/init.d/functions
- 
+
 # Source networking configuration.
 . /etc/sysconfig/network
- 
+
 # Check that networking is up.
 [ "$NETWORKING" = "no" ] && exit 0
- 
-nginx="%NGINX_BIN_DIR%/nginx"
+
+nginx="/usr/local/openresty/nginx/sbin/nginx"
 prog=$(basename $nginx)
- 
-NGINX_CONF_FILE="%NGINX_CONF_DIR%/nginx.conf"
- 
-[ -f /etc/sysconfig/nginx ] && . /etc/sysconfig/nginx
- 
-lockfile=/var/lock/subsys/nginx
- 
+pidfile=/usr/local/openresty/nginx/logs/nginx.pid
+
+NGINX_CONF_FILE="/usr/local/openresty/nginx/conf/nginx.conf"
+
+[ -f /etc/sysconfig/openresty ] && . /etc/sysconfig/openresty
+
+lockfile=/var/lock/subsys/openresty
+
 start() {
     [ -x $nginx ] || exit 5
     [ -f $NGINX_CONF_FILE ] || exit 6
@@ -38,7 +39,7 @@ start() {
     [ $retval -eq 0 ] && touch $lockfile
     return $retval
 }
- 
+
 stop() {
     echo -n $"Stopping $prog: "
     killproc $prog -QUIT
@@ -47,14 +48,14 @@ stop() {
     [ $retval -eq 0 ] && rm -f $lockfile
     return $retval
 }
- 
+
 restart() {
     configtest || return $?
     stop
     sleep 1
     start
 }
- 
+
 reload() {
     configtest || return $?
     echo -n $"Reloading $prog: "
@@ -62,23 +63,23 @@ reload() {
     RETVAL=$?
     echo
 }
- 
+
 force_reload() {
     restart
 }
- 
+
 configtest() {
-  $nginx -q -t -c $NGINX_CONF_FILE
+    $nginx -q -t -c $NGINX_CONF_FILE
 }
- 
+
 rh_status() {
-    status $prog
+    status $nginx
 }
- 
+
 rh_status_q() {
     rh_status >/dev/null 2>&1
 }
- 
+
 case "$1" in
     start)
         rh_status_q && exit 0
@@ -103,7 +104,7 @@ case "$1" in
         ;;
     condrestart|try-restart)
         rh_status_q || exit 0
-            ;;
+        ;;
     *)
         echo $"Usage: $0 {start|stop|status|restart|condrestart|try-restart|reload|force-reload|configtest}"
         exit 2
