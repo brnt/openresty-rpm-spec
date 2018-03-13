@@ -13,9 +13,9 @@ Note : The spec file is written for version 1.13.6.1 of openresty, edit .spec fi
 
 	cd ~/rpmbuild/SOURCES
 	wget http://openresty.org/download/openresty-{version}.tar.gz
-	wget https://github.com/ehsan310/openresty-rpm-spec/raw/master/openresty.init
+	wget https://github.com/brnt/openresty-rpm-spec/raw/master/openresty.init
 	cd ~/rpmbuild/SPECS
-	wget https://github.com/ehsan310/openresty-rpm-spec/raw/master/openresty.spec
+	wget https://github.com/brnt/openresty-rpm-spec/raw/master/openresty.spec
 
 Then just build the RPM:
 

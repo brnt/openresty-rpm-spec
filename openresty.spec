@@ -7,7 +7,7 @@ Group:		Productivity/Networking/Web/Servers
 License:	BSD
 URL:		openresty.org
 Source0:	http://openresty.org/download/%{name}-%{version}.tar.gz
-Source1:	https://github.com/ehsan310/openresty-rpm-spec/raw/master/openresty.init
+Source1:	https://github.com/brnt/openresty-rpm-spec/raw/master/openresty.init
 BuildRoot:	%(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 
 BuildRequires:	sed openssl-devel pcre-devel readline-devel
