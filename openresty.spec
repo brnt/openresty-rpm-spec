@@ -1,5 +1,5 @@
 Name:		openresty
-Version:	1.13.6.1
+Version:	1.13.6.2
 Release:	1%{?dist}
 Summary:	a fast web app server by extending nginx
 
@@ -26,7 +26,7 @@ OpenResty (aka. ngx_openresty) is a full-fledged web application server by bundl
 
 
 %build
-./configure --with-ipv6 --with-pcre-jit --with-http_geoip_module --with-http_stub_status_module --with-http_realip_module --with-http_v2_module --with-http_slice_module
+./configure --with-ipv6 --with-pcre-jit --with-http_geoip_module --with-http_stub_status_module --with-http_realip_module --with-http_v2_module --with-http_slice_module --with-http_auth_request_module
 make %{?_smp_mflags}
 
 
